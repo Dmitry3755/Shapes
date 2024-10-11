@@ -1,6 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include "point.h"
+#include "Point3D.h"
 
 class console {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

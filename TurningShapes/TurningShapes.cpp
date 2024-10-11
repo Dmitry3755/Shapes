@@ -4,11 +4,11 @@
 #include <iostream>
 #include <cmath>
 #include "Windows.h"
-#include "point.h"
-#include "shape.h"
+#include "Point3D.h"
 #include "console.h"
 #include "buffer.h"
 #include "square.h"
+#include "rectangle.h"
 #include <vector>
 
 using namespace std;
@@ -16,32 +16,34 @@ using namespace std;
 int main()
 {
 	bool running = true;
-
-	int radius = 8;
+	int radius = 5;
 
 	buffer buf;
 	console console;
-	point point;
-	square square(radius);
+	Point3D point;
+	//square square(radius);
+	rectangle rectangle(radius);
 	MSG msg = { 0 };
 
 	console.consolInit();
 	console.setCursorVisible(false);
+
 	CONSOLE_SCREEN_BUFFER_INFO screenBufferInfo = console.getConsoleScreenBuferInfo();
+
 	float height = screenBufferInfo.srWindow.Bottom - screenBufferInfo.srWindow.Top;
 	float width = screenBufferInfo.srWindow.Right - screenBufferInfo.srWindow.Left;
 
 	point.calculateCenter(screenBufferInfo);
-	square.setCenter(point);
+	rectangle.setCenter(point);
 
 	vector<string> buffer(height, string(width, ' '));
 
 	RegisterHotKey(NULL, 1, MOD_CONTROL, 0x51);
-	 
+
 	while (running) {
 		buf.clearBuffer(buffer, height, width);
 		console.setCursorPosition(0, 0);
-		square.draw(point, buffer);
+		rectangle.draw3D(point, buffer);
 		buf.drawBuffer(buffer);
 
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {

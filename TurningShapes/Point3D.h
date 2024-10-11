@@ -2,10 +2,10 @@
 
 #include <windows.h>
 
-struct point
+struct Point3D
 {
-	float x, y;
-	point(float x = 0, float y = 0) : x(x), y(y) {};
+	float x, y, z;
+	Point3D(float x = 0, float y = 0, float z = 0) : x(x), y(y), z(z) {};
 
 public:
 	void calculateCenter(CONSOLE_SCREEN_BUFFER_INFO sizes) {
@@ -13,7 +13,7 @@ public:
 		y = (sizes.srWindow.Bottom - sizes.srWindow.Top + 1) / 2;
 	};
 
-	point getCenter() { return point(x, y); };
+	Point3D getCenter() { return Point3D(x, y); };
 
 	COORD pointToCoordConverter() {
 		COORD coord;

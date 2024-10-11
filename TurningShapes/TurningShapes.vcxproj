@@ -132,7 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer.h" />
-    <ClInclude Include="point.h" />
+    <ClInclude Include="Point3D.h" />
+    <ClInclude Include="rectangle.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="square.h" />
   </ItemGroup>
